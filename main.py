@@ -1,16 +1,43 @@
-# This is a sample Python script.
+from classes.autokolcsonzo import Autokolcsonzo
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def main():
+    kolcsonzo = Autokolcsonzo("City Rent")
 
+    while True:
+        print("\n--- AUTÓKÖLCSÖNZŐ RENDSZER ---")
+        print("1. Autók listázása")
+        print("2. Autó bérlése")
+        print("3. Bérlés lemondása")
+        print("4. Aktuális bérlések listázása")
+        print("0. Kilépés")
+        valasz = input("Válassz egy opciót: ")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+        if valasz == "1":
+            print("\nElérhető autók:")
+            print(kolcsonzo.listar_autok())
 
+        elif valasz == "2":
+            rendszam = input("Add meg a rendszámot: ")
+            kezdet = input("Add meg a kezdő dátumot (YYYY-MM-DD): ")
+            veg = input("Add meg a vég dátumot (YYYY-MM-DD): ")
+            print(kolcsonzo.berles(rendszam, kezdet, veg))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+        elif valasz == "3":
+            rendszam = input("Add meg a rendszámot: ")
+            kezdet = input("Add meg a kezdő dátumot (YYYY-MM-DD): ")
+            veg = input("Add meg a vég dátumot (YYYY-MM-DD): ")
+            print(kolcsonzo.bérlés_lemondása(rendszam, kezdet, veg))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        elif valasz == "4":
+            print("\nAktuális bérlések:")
+            print(kolcsonzo.listar_berlesek())
+
+        elif valasz == "0":
+            print("Kilépés...")
+            break
+
+        else:
+            print("Érvénytelen opció. Próbáld újra!")
+
+if __name__ == "__main__":
+    main()
